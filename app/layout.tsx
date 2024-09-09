@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import { ClerkProvider } from "@clerk/nextjs";
 import { ThemeProvider } from "next-themes";
 
 const geistSans = localFont({
@@ -15,18 +16,24 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Cashi",
+  title: "Cashii",
   description: "Budgeting & Expense Tracking - The Smart Way!",
 };
 
-export default function RootLayout<T extends React.ReactNode>({ children }: { children: T }) {
+export default function RootLayout<T extends React.ReactNode>({
+  children,
+}: {
+  children: T;
+}) {
   return (
-    <html lang="en" suppressHydrationWarning={true}>
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-          {children}
-        </ThemeProvider>
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en">
+        <body className={`${geistSans.variable} ${geistMono.variable}`}>
+          <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+            {children}
+          </ThemeProvider>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

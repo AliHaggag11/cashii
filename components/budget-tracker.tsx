@@ -15,6 +15,7 @@ import { Progress } from "@/components/ui/progress"
 import { format, parseISO, startOfYear, endOfYear, eachDayOfInterval, eachMonthOfInterval, eachYearOfInterval, addMonths, isSameMonth, isBefore } from 'date-fns'
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import { Checkbox } from "@/components/ui/checkbox"
+import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs"
 
 type Entry = {
   id: number
@@ -363,23 +364,31 @@ export function BudgetTracker() {
   return (
     <div className="container mx-auto p-4">
       <nav className="bg-[#171717] rounded-lg mt-0 mb-6">
-    <div className="flex justify-between items-center py-6 px-4 ">
-      <h1 className="text-3xl font-bold text-white">Cashii</h1>
-      <Button
-        variant="outline"
-        size="icon"
-        onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-        className="bg-transparent border-transparent"
-      >
-        {theme === "dark" ? (
-          <Sun className="h-[1.2rem] w-[1.2rem] text-white" />
-        ) : (
-          <Moon className="h-[1.2rem] w-[1.2rem] text-white" />
-        )}
-        <span className="sr-only">Toggle theme</span>
-      </Button>
-    </div>
-  </nav>
+        <div className="flex justify-between items-center py-6 px-4 ">
+          <h1 className="text-3xl font-bold text-white">Cashii</h1>
+          <div className="flex items-center space-x-4">
+            <SignedOut>
+              <SignInButton />
+            </SignedOut>
+            <SignedIn>
+              <UserButton />
+            </SignedIn>
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              className="bg-transparent border-transparent"
+            >
+              {theme === "dark" ? (
+                <Sun className="h-[1.2rem] w-[1.2rem] text-white" />
+              ) : (
+                <Moon className="h-[1.2rem] w-[1.2rem] text-white" />
+              )}
+              <span className="sr-only">Toggle theme</span>
+            </Button>
+          </div>
+        </div>
+      </nav>
       
       <Card className="mb-8 ">
         <CardHeader>
