@@ -618,7 +618,7 @@ export function BudgetTracker() {
                       className="h-2"
                     />
                     <p className="text-sm text-muted-foreground mt-1">
-                      EGP {expensesByCategory[goal.category] || 0} / ${goal.amount}
+                      EGP {expensesByCategory[goal.category] || 0} / EGP{goal.amount}
                     </p>
                   </div>
                   <div className="flex space-x-2">
