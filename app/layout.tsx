@@ -17,6 +17,16 @@ const geistMono = localFont({
 export const metadata: Metadata = {
   title: "Cashii",
   description: "Budgeting & Expense Tracking - The Smart Way!",
+  openGraph: {
+    title: "Cashii",
+    description: "Budgeting & Expense Tracking - The Smart Way!",
+    images: [
+      {
+        url: "/Users/alihaggag/Desktop/cashi-v2/my-app/public/Purple Modern Money Payment Service Logo.jpg",
+        alt: "Cashii Thumbnail",
+      },
+    ],
+  },
 };
 
 export default function RootLayout<T extends React.ReactNode>({
