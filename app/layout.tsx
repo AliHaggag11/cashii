@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     description: "Budgeting & Expense Tracking - The Smart Way!",
     images: [
       {
-        url: "/Users/alihaggag/Desktop/cashi-v2/my-app/public/Purple Modern Money Payment Service Logo.jpg",
+        url: "my-app/public/Purple Modern Money Payment Service Logo.jpg",
         alt: "Cashii Thumbnail",
       },
     ],
