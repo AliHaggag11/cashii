@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/my-app/public/Purple Modern Money Payment Service Logo.jpg",
+        url: "https://opengraph.b-cdn.net/production/images/618b2b6d-dc2b-4bb2-b25d-8f57fe9aabad.jpg?token=Xz01gONTR9d_kqlVdgHI-UHExJJiDtotTBJTpHJA3uI&height=500&width=500&expires=33261921899",
         width: 1200,
         height: 630,
         alt: "Preview image for Cashii",
@@ -51,7 +51,7 @@ export default function RootLayout<T extends React.ReactNode>({
             />
             <meta
               property="og:image"
-              content="/my-app/public/Purple Modern Money Payment Service Logo.jpg"
+              content="https://opengraph.b-cdn.net/production/images/618b2b6d-dc2b-4bb2-b25d-8f57fe9aabad.jpg?token=Xz01gONTR9d_kqlVdgHI-UHExJJiDtotTBJTpHJA3uI&height=500&width=500&expires=33261921899"
             />
           </head>
           {children}
