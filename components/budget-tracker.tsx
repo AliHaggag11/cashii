@@ -364,7 +364,7 @@ export function BudgetTracker() {
     <div className="container mx-auto p-4">
       <nav className="bg-[#171717] rounded-lg mt-0 mb-6">
     <div className="flex justify-between items-center py-6 px-4 ">
-      <h1 className="text-3xl font-bold text-white">Cashi</h1>
+      <h1 className="text-3xl font-bold text-white">Cashii</h1>
       <Button
         variant="outline"
         size="icon"
