@@ -15,7 +15,7 @@ import { Progress } from "@/components/ui/progress"
 import { format, parseISO, startOfYear, endOfYear, eachDayOfInterval, eachMonthOfInterval, eachYearOfInterval, addMonths, isSameMonth, isBefore } from 'date-fns'
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import { Checkbox } from "@/components/ui/checkbox"
-import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs"
+// import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs"
 
 type Entry = {
   id: number
@@ -367,12 +367,12 @@ export function BudgetTracker() {
         <div className="flex justify-between items-center py-6 px-4 ">
           <h1 className="text-3xl font-bold text-white">Cashii</h1>
           <div className="flex items-center space-x-4">
-            <SignedOut>
+            {/* <SignedOut>
               <SignInButton />
             </SignedOut>
             <SignedIn>
               <UserButton />
-            </SignedIn>
+            </SignedIn> */}
             <Button
               variant="outline"
               size="icon"
