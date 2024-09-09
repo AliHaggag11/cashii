@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
-import { Plus, Pencil, Trash2, Moon, Sun, Filter, X, Calendar, Check } from "lucide-react"
+import { Pencil, Trash2, Moon, Sun, Filter, Check } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -12,7 +12,7 @@ import { useTheme } from "next-themes"
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip, BarChart, Bar, XAxis, YAxis, CartesianGrid } from 'recharts'
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { Progress } from "@/components/ui/progress"
-import { format, parseISO, startOfYear, endOfYear, eachDayOfInterval, eachMonthOfInterval, eachYearOfInterval, addMonths, isSameMonth, isBefore, isAfter } from 'date-fns'
+import { format, parseISO, startOfYear, endOfYear, eachDayOfInterval, eachMonthOfInterval, eachYearOfInterval, addMonths, isSameMonth, isBefore } from 'date-fns'
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import { Checkbox } from "@/components/ui/checkbox"
 
@@ -319,9 +319,13 @@ export function BudgetTracker() {
 
   const installmentEntries = entries.filter(entry => entry.isInstallment)
   const installmentsByDescription = installmentEntries.reduce((acc, entry) => {
+    if (!entry.installmentId) {
+      return acc;
+    }
+    
     if (!acc[entry.description]) {
       acc[entry.description] = {
-        installmentId: entry.installmentId,
+        installmentId: entry.installmentId, // Ensure this is always a number
         totalAmount: entry.installmentAmount || 0,
         paidAmount: 0,
         remainingAmount: entry.installmentAmount || 0,
@@ -330,14 +334,18 @@ export function BudgetTracker() {
         entries: [],
       }
     }
-    acc[entry.description].entries.push(entry)
+    
+    // Update installment data
+    acc[entry.description].entries.push(entry);
     if (entry.isPaid) {
-      acc[entry.description].paidAmount += entry.amount
-      acc[entry.description].remainingAmount -= entry.amount
-      acc[entry.description].paidPeriods++
+      acc[entry.description].paidAmount += entry.amount;
+      acc[entry.description].remainingAmount -= entry.amount;
+      acc[entry.description].paidPeriods++;
     }
-    return acc
-  }, {} as Record<string, { installmentId: number, totalAmount: number, paidAmount: number, remainingAmount: number, period: number, paidPeriods: number, entries: Entry[] }>)
+    
+    return acc;
+  }, {} as Record<string, { installmentId: number, totalAmount: number, paidAmount: number, remainingAmount: number, period: number, paidPeriods: number, entries: Entry[] }>);
+  
 
   const toggleInstallmentPaid = (installmentId: number, entryId: number) => {
     setEntries(entries.map(entry =>
