@@ -20,10 +20,15 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Cashii",
     description: "Budgeting & Expense Tracking - The Smart Way!",
+    url: "https://cashii.vercel.app",
+    siteName: "Cashii",
+    type: "website",
     images: [
       {
-        url: "my-app/public/Purple Modern Money Payment Service Logo.jpg",
-        alt: "Cashii Thumbnail",
+        url: "/my-app/public/Purple Modern Money Payment Service Logo.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Preview image for Cashii",
       },
     ],
   },
@@ -35,12 +40,23 @@ export default function RootLayout<T extends React.ReactNode>({
   children: T;
 }) {
   return (
-      <html lang="en">
-        <body className={`${geistSans.variable} ${geistMono.variable}`}>
-          <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-            {children}
-          </ThemeProvider>
-        </body>
-      </html>
+    <html lang="en">
+      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+          <head>
+            <meta property="og:title" content="Cashii" />
+            <meta
+              property="og:description"
+              content="Budgeting & Expense Tracking - The Smart Way!"
+            />
+            <meta
+              property="og:image"
+              content="/my-app/public/Purple Modern Money Payment Service Logo.jpg"
+            />
+          </head>
+          {children}
+        </ThemeProvider>
+      </body>
+    </html>
   );
 }
